@@ -36,9 +36,9 @@ module.exports = {
         loader: 'file-loader',
       },
       {
-        test:    /\.html$/,
+        test: /\.html$/,
         exclude: /node_modules/,
-        loader:  'file-loader?name=[name].[ext]',
+        loader: 'file-loader?name=[name].[ext]',
       },
     ],
   },

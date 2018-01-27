@@ -6,7 +6,7 @@ import { addTask, deleteTask, changeTask, loadTasks, saveTasks, hideAlert } from
 
 
 class App extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.loadTasks();
   }
 
@@ -25,13 +25,13 @@ class App extends Component {
 
           {this.props.isLoading ?
             <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw loader" />
-          :
+            :
             this.props.tasks.map((task) => (
               <Task
-                key={task.id}
+                key={task.get('id')}
                 task={task}
-                onDelete={(e) => this.props.deleteTask(task.id)}
-                onChange={(e) => this.props.changeTask(task.id, e.target.value)}
+                onDelete={(e) => this.props.deleteTask(task.get('id'))}
+                onChange={(e) => this.props.changeTask(task.get('id'), e.target.value)}
               />
             ))
           }
@@ -39,9 +39,9 @@ class App extends Component {
           <div className="alerts">
             {this.props.alerts.map((alert) => (
               <Alert
-                key={alert.id}
+                key={alert.get('id')}
                 alert={alert}
-                onHide={(e) => this.props.hideAlert(alert.id)}
+                onHide={(e) => this.props.hideAlert(alert.get('id'))}
               />
             ))}
           </div>
@@ -52,19 +52,19 @@ class App extends Component {
 }
 
 const saveDisabled = (props) =>
-  props.isLoading || props.isSaving || (props.tasks.reduce((acc, t) => acc + t.id + t.title, "") === props.savedTasks.reduce((acc, t) => acc + t.id + t.title, ""));
+  props.isLoading || props.isSaving || (props.tasks.reduce((acc, t) => acc + t.get('id') + t.get('title'), "") === props.savedTasks.reduce((acc, t) => acc + t.get('id') + t.get('title'), ""));
 
 const mapStateToProps = (state) => ({
-  tasks: state.tasks,
-  savedTasks: state.savedTasks,
-  isLoading: state.isLoading,
-  isSaving: state.isSaving,
-  alerts: state.alerts
+  tasks: state.get('tasks'),
+  savedTasks: state.get('savedTasks'),
+  isLoading: state.get('isLoading'),
+  isSaving: state.get('isSaving'),
+  alerts: state.get('alerts'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addTask: () => dispatch(addTask()),
-  deleteTask: (task) => dispatch(deleteTask(task)),
+  deleteTask: (id) => dispatch(deleteTask(id)),
   changeTask: (id, title) => dispatch(changeTask(id, title)),
   loadTasks: () => dispatch(loadTasks()),
   saveTasks: (tasks) => dispatch(saveTasks(tasks)),

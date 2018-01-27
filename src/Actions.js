@@ -52,19 +52,19 @@ export const loadTasks = () => {
     fetch(url, {
       headers: new Headers({ 'Content-Type': 'application/json' })
     })
-    .then((request) => request.json())
-    .then((json) => {
-      if (json.tasks) {
-        dispatch(loadTasksSuccess(json.tasks));
-      } else {
+      .then((request) => request.json())
+      .then((json) => {
+        if (json.tasks) {
+          dispatch(loadTasksSuccess(json.tasks));
+        } else {
+          dispatch(loadTasksError());
+          dispatch(showAlert("error", "Can't load tasks."))
+        }
+      }).catch(() => {
         dispatch(loadTasksError());
         dispatch(showAlert("error", "Can't load tasks."))
-      }
-    }).catch(() => {
-      dispatch(loadTasksError());
-      dispatch(showAlert("error", "Can't load tasks."))
-    });
-   }
+      });
+  }
 };
 
 export const saveTasks = (tasks) => {
@@ -76,18 +76,18 @@ export const saveTasks = (tasks) => {
       body: JSON.stringify({ tasks: tasks }),
       headers: new Headers({ 'Content-Type': 'application/json' })
     })
-    .then((request) => request.json())
-    .then((json) => {
-      if (json.tasks) {
-        dispatch(saveTasksSuccess());
-        dispatch(showAlert("success", "Tasks saved."))
-      } else {
+      .then((request) => request.json())
+      .then((json) => {
+        if (json.tasks) {
+          dispatch(saveTasksSuccess());
+          dispatch(showAlert("success", "Tasks saved."))
+        } else {
+          dispatch(saveTasksError());
+          dispatch(showAlert("error", "Can't save tasks."))
+        }
+      }).catch(() => {
         dispatch(saveTasksError());
         dispatch(showAlert("error", "Can't save tasks."))
-      }
-    }).catch(() => {
-      dispatch(saveTasksError());
-      dispatch(showAlert("error", "Can't save tasks."))
-    });
-   }
+      });
+  }
 };

@@ -7,8 +7,8 @@ class Task extends Component {
 
   render() {
     return (
-      <div className="task" key={this.props.task.id}>
-        <input className="task-input" ref={(input) => this.textInput = input} type="text" value={this.props.task.title} onChange={this.props.onChange}/>
+      <div className="task" key={this.props.task.get('id')}>
+        <input className="task-input" ref={(input) => this.textInput = input} type="text" value={this.props.task.get('title')} onChange={this.props.onChange} />
         <i className="fa fa-trash-o task-delete" onClick={this.props.onDelete} />
       </div>
     );

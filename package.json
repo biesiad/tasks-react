@@ -26,6 +26,10 @@
   },
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --port 3000 --hot --inline --info false --colors"
+    "start": "webpack-dev-server --port 3000 --hot --inline --info false --colors",
+    "flow": "flow"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.64.0"
   }
 }

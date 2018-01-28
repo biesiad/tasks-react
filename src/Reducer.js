@@ -3,7 +3,7 @@ const initialState = {
   savedTasks: [],
   isLoading: false,
   isSaving: false,
-  alerts: []
+  alerts: [],
 };
 
 export default (state=initialState, { type, payload }) => {
@@ -33,4 +33,4 @@ export default (state=initialState, { type, payload }) => {
     default:
       return state;
   }
-}
+};

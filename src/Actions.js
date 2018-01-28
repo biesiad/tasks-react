@@ -1,38 +1,45 @@
+// @flow
+
 const url = 'http://cfassignment.herokuapp.com/greg/tasks';
+
+  type Task = {
+    id: number,
+    title: string,
+  };
 
 export const addTask = () => ({
   type: 'ADD_TASK',
   payload: null
 });
 
-export const deleteTask = (id) => ({
+export const deleteTask = (id: number) => ({
   type: 'DELETE_TASK',
   payload: id
 });
 
-export const changeTask = (id, title) => ({
+export const changeTask = (id: number, title: string) => ({
   type: 'CHANGE_TASK',
   payload: { id: id, title: title }
 });
 
-export const showAlert = (type, message) => ({
+export const showAlert = (type: string, message: string) => ({
   type: 'ALERT_SHOW',
   payload: { message: message, type: type }
 });
 
-export const hideAlert = (id) => ({
+export const hideAlert = (id: number) => ({
   type: 'ALERT_HIDE',
   payload: id
 });
 
-export const loadTasksSuccess = (tasks) => ({
+export const loadTasksSuccess = (tasks: Array<Task>) => ({
   type: 'LOAD_TASKS_SUCCESS',
   payload: tasks
 });
 
-export const loadTasksError = (tasks) => ({
+export const loadTasksError = () => ({
   type: 'LOAD_TASKS_ERROR',
-  payload: tasks
+  payload: null
 });
 
 export const saveTasksSuccess = () => ({
@@ -46,7 +53,7 @@ export const saveTasksError = () => ({
 });
 
 export const loadTasks = () => {
-  return (dispatch, getState) => {
+  return (dispatch: any, getState: any) => {
     dispatch({ type: 'LOAD_TASKS' });
 
     fetch(url, {
@@ -67,8 +74,8 @@ export const loadTasks = () => {
   }
 };
 
-export const saveTasks = (tasks) => {
-  return (dispatch, getState) => {
+export const saveTasks = (tasks: Array<Task>) => {
+  return (dispatch: any, getState: any) => {
     dispatch({ type: 'SAVE_TASKS' });
 
     fetch(url, {

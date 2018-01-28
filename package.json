@@ -3,16 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.7",
     "file-loader": "^0.11.2",
+    "flow": "^0.2.3",
     "font-awesome": "^4.7.0",
     "html-webpack-plugin": "^2.30.1",
-    "immutable": "^3.8.2",
     "node-sass": "^4.7.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -27,6 +29,11 @@
   },
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --port 3000 --hot --inline --info false --colors"
+    "start": "webpack-dev-server --port 3000 --hot --inline --info false --colors",
+    "flow": "flow"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.64.0",
+    "immutable": "^4.0.0-rc.9"
   }
 }

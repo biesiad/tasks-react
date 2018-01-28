@@ -1,6 +1,9 @@
+// @flow
+
 import { fromJS, Record, List, Map } from 'immutable';
 
-const InitialState = Record({
+
+const InitialState: RecordFactory<StateProps> = Record({
   tasks: new List(),
   savedTasks: new List(),
   isLoading: false,
@@ -8,7 +11,8 @@ const InitialState = Record({
   alerts: new List(),
 });
 
-export default (state = new InitialzState({}), { type, payload }) => {
+
+export default (state: State = new InitialState, { type, payload }: any) => {
   switch (type) {
     case 'ADD_TASK':
       return state.set('tasks', state.get('tasks').unshift(fromJS({ title: "", id: (new Date()).getTime() })));
@@ -44,4 +48,4 @@ export default (state = new InitialzState({}), { type, payload }) => {
     default:
       return state;
   }
-}
+};

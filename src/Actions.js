@@ -1,53 +1,45 @@
+// @flow
+
 const url = 'http://cfassignment.herokuapp.com/greg/tasks';
 
-export const addTask = () => ({
+export const addTask = (): AddTask => ({
   type: 'ADD_TASK',
   payload: null
 });
 
-export const deleteTask = (id) => ({
+export const deleteTask = (id: number): DeleteTask => ({
   type: 'DELETE_TASK',
-  payload: id
+  payload: id,
 });
 
-export const changeTask = (id, title) => ({
+export const changeTask = (id: number, title: string): ChangeTask => ({
   type: 'CHANGE_TASK',
-  payload: { id: id, title: title }
+  payload: { id, title },
 });
 
-export const showAlert = (type, message) => ({
-  type: 'ALERT_SHOW',
-  payload: { message: message, type: type }
-});
-
-export const hideAlert = (id) => ({
-  type: 'ALERT_HIDE',
-  payload: id
-});
-
-export const loadTasksSuccess = (tasks) => ({
+export const loadTasksSuccess = (tasks: Array<Task>): LoadTasksSuccess => ({
   type: 'LOAD_TASKS_SUCCESS',
   payload: tasks
 });
 
-export const loadTasksError = (tasks) => ({
+export const loadTasksError = (): LoadTasksError => ({
   type: 'LOAD_TASKS_ERROR',
-  payload: tasks
+  payload: null
 });
 
-export const saveTasksSuccess = () => ({
+export const saveTasksSuccess = (): SaveTasksSuccess => ({
   type: 'SAVE_TASKS_SUCCESS',
   payload: null
 });
 
-export const saveTasksError = () => ({
+export const saveTasksError = (): SaveTasksError => ({
   type: 'SAVE_TASKS_ERROR',
   payload: null
 });
 
-export const loadTasks = () => {
+export const loadTasks = (): ThunkAction => {
   return (dispatch, getState) => {
-    dispatch({ type: 'LOAD_TASKS' });
+    dispatch({ type: 'LOAD_TASKS', payload: null });
 
     fetch(url, {
       headers: new Headers({ 'Content-Type': 'application/json' })
@@ -64,12 +56,12 @@ export const loadTasks = () => {
       dispatch(loadTasksError());
       dispatch(showAlert("error", "Can't load tasks."))
     });
-   }
+  };
 };
 
-export const saveTasks = (tasks) => {
+export const saveTasks = (tasks: Array<Task>): ThunkAction => {
   return (dispatch, getState) => {
-    dispatch({ type: 'SAVE_TASKS' });
+    dispatch({ type: 'SAVE_TASKS', payload: null });
 
     fetch(url, {
       method: "POST",
@@ -91,3 +83,13 @@ export const saveTasks = (tasks) => {
     });
    }
 };
+
+export const showAlert = (type: AlertType, message: string): ShowAlert => ({
+  type: 'SHOW_ALERT',
+  payload: { type, message },
+});
+
+export const hideAlert = (id: number): HideAlert => ({
+  type: 'HIDE_ALERT',
+  payload: id,
+});

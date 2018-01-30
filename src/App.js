@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import Task from './components/Task.js';
-import Alert from './components/Alert.js';
-import { addTask, deleteTask, changeTask, loadTasks, saveTasks, hideAlert } from './Actions.js';
+import Task from './components/Task';
+import Alert from './components/Alert';
+import { addTask, deleteTask, changeTask, loadTasks, saveTasks, hideAlert } from './Actions.ts';
 
 
 class App extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.loadTasks();
   }
 
@@ -25,7 +25,7 @@ class App extends Component {
 
           {this.props.isLoading ?
             <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw loader" />
-          :
+            :
             this.props.tasks.map((task) => (
               <Task
                 key={task.id}

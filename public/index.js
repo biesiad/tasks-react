@@ -6,7 +6,7 @@ import 'font-awesome/css/font-awesome.css';
 import './index.scss';
 
 import App from '../src/App';
-import reducer from '../src/Reducer.js';
+import reducer from '../src/Reducer.ts';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -23,4 +23,4 @@ ReactDOM.render(
   <Provider store={store}>
     <App />
   </ Provider>,
-document.getElementById('app'));
+  document.getElementById('app'));

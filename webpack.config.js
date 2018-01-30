@@ -15,6 +15,11 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.ts|\.tsx$/,
+        exclude: /node_modules/,
+        loader: 'ts-loader',
+      },
+      {
         test: /\.js|\.jsx$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
@@ -36,9 +41,9 @@ module.exports = {
         loader: 'file-loader',
       },
       {
-        test:    /\.html$/,
+        test: /\.html$/,
         exclude: /node_modules/,
-        loader:  'file-loader?name=[name].[ext]',
+        loader: 'file-loader?name=[name].[ext]',
       },
     ],
   },

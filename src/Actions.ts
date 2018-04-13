@@ -27,6 +27,10 @@ export const loadTasksSuccess = (tasks: Array<Task>): LoadTasksSuccess => ({
   payload: tasks
 });
 
+export const saveTasksRequest = (): SaveTasksRequest => ({
+  type: 'SAVE_TASKS_REQUEST',
+});
+
 export const saveTasksSuccess = (): SaveTasksSuccess => ({
   type: 'SAVE_TASKS_SUCCESS',
 });
@@ -47,7 +51,7 @@ export const hideAlert = (id: number) => ({
 
 export const loadTasks = (): ThunkAction => {
   return (dispatch, getState) => {
-    dispatch({ type: 'LOAD_TASKS_REQUEST' });
+    dispatch(loadTasksRequest());
 
     fetch(url, {
       headers: new Headers({ 'Content-Type': 'application/json' })
@@ -69,7 +73,7 @@ export const loadTasks = (): ThunkAction => {
 
 export const saveTasks = (tasks: Array<Task>): ThunkAction => {
   return (dispatch, getState) => {
-    dispatch({ type: 'SAVE_TASKS_REQUEST' });
+    dispatch(saveTasksRequest());
 
     fetch(url, {
       method: "POST",

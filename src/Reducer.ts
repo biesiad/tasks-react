@@ -29,16 +29,10 @@ const initialState: State = {
     case 'SAVE_TASKS_ERROR':
       return { ...state, isSaving: false };
     default:
-      // NOTE: we need to ignore all actions that we don't care about in this reducer
-      // so we can't use exhaustiveness check with:
-      // return assertNever(action);  
       return state;
   }
 }
 
-// function assertNever(x: never): never {
-//   throw new Error("Unexpected object: " + x);
-// }
 export default combineReducers({
   tasks: tasksReducer,
   alerts: alertsReducer,

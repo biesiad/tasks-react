@@ -56,7 +56,7 @@ export const loadTasks = (): ThunkAction => {
     fetch(url, {
       headers: new Headers({ 'Content-Type': 'application/json' })
     })
-      .then((request) => request.json())
+      .then((response) => response.json())
       .then((json) => {
         if (json.tasks) {
           dispatch(loadTasksSuccess(json.tasks));
@@ -80,7 +80,7 @@ export const saveTasks = (tasks: Array<Task>): ThunkAction => {
       body: JSON.stringify({ tasks: tasks }),
       headers: new Headers({ 'Content-Type': 'application/json' })
     })
-      .then((request) => request.json())
+      .then((response) => response.json())
       .then((json) => {
         if (json.tasks) {
           dispatch(saveTasksSuccess());

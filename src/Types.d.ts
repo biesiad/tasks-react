@@ -16,10 +16,6 @@ type ChangeTask = {
   payload: Task,
 }
 
-type LoadTasks = {
-  type: 'LOAD_TASKS'
-}
-
 type LoadTasksRequest = {
   type: 'LOAD_TASKS_REQUEST'
 }
@@ -31,10 +27,6 @@ type LoadTasksSuccess = {
 
 type LoadTasksError = {
   type: 'LOAD_TASKS_ERROR',
-}
-
-type SaveTasks = {
-  type: 'SAVE_TASKS',
 }
 
 type SaveTasksRequest = {
@@ -62,25 +54,24 @@ type HideAlert = {
   payload: number,
 }
 
-
 type AlertAction =
   | ShowAlert
   | HideAlert;
 
-type Action =
-  | AlertAction
+type TasksAction =
   | AddTask
   | DeleteTask
   | ChangeTask
-  | LoadTasks
   | LoadTasksRequest
   | LoadTasksSuccess
   | LoadTasksError
-  | SaveTasks
   | SaveTasksRequest
   | SaveTasksSuccess
   | SaveTasksError;
 
+type Action =
+  | TasksAction
+  | AlertAction;
 
 type Task = {
   id: number,
@@ -95,7 +86,7 @@ type Alert = {
   message: string,
 };
 
-type State = {
+type TasksState = {
   tasks: Array<Task>,
   savedTasks: Array<Task>,
   isLoading: boolean,
@@ -104,4 +95,9 @@ type State = {
 
 type AlertsState = {
   alerts: Array<Alert>,
+};
+
+type State = {
+  tasks: TasksState,
+  alerts: AlertsState,
 };

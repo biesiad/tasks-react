@@ -14,6 +14,10 @@ export const changeTask = (id: number, title: string): ChangeTask => ({
   payload: { id: id, title: title },
 });
 
+export const loadTasksRequest = (): LoadTasksRequest => ({
+  type: 'LOAD_TASKS_REQUEST',
+});
+
 export const loadTasksError = (): LoadTasksError => ({
   type: 'LOAD_TASKS_ERROR',
 });
@@ -21,6 +25,10 @@ export const loadTasksError = (): LoadTasksError => ({
 export const loadTasksSuccess = (tasks: Array<Task>): LoadTasksSuccess => ({
   type: 'LOAD_TASKS_SUCCESS',
   payload: tasks
+});
+
+export const saveTasksRequest = (): SaveTasksRequest => ({
+  type: 'SAVE_TASKS_REQUEST',
 });
 
 export const saveTasksSuccess = (): SaveTasksSuccess => ({
@@ -41,13 +49,9 @@ export const hideAlert = (id: number) => ({
   payload: id
 });
 
-type Dispatch = (action: Action) => void;
-type GetState = () => State;
-type ThunkAction = (dispatch: Dispatch, getState: any) => void;
-
 export const loadTasks = (): ThunkAction => {
   return (dispatch, getState) => {
-    dispatch({ type: 'LOAD_TASKS' });
+    dispatch(loadTasksRequest());
 
     fetch(url, {
       headers: new Headers({ 'Content-Type': 'application/json' })
@@ -69,7 +73,7 @@ export const loadTasks = (): ThunkAction => {
 
 export const saveTasks = (tasks: Array<Task>): ThunkAction => {
   return (dispatch, getState) => {
-    dispatch({ type: 'SAVE_TASKS' });
+    dispatch(saveTasksRequest());
 
     fetch(url, {
       method: "POST",

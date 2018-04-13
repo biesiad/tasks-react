@@ -1,3 +1,7 @@
+type Dispatch = (action: Action) => void;
+type GetState = () => State;
+type ThunkAction = (dispatch: Dispatch, getState: any) => void;
+
 type AddTask = {
   type: 'ADD_TASK',
 };
@@ -12,6 +16,14 @@ type ChangeTask = {
   payload: Task,
 }
 
+type LoadTasks = {
+  type: 'LOAD_TASKS'
+}
+
+type LoadTasksRequest = {
+  type: 'LOAD_TASKS_REQUEST'
+}
+
 type LoadTasksSuccess = {
   type: 'LOAD_TASKS_SUCCESS',
   payload: Array<Task>,
@@ -19,6 +31,14 @@ type LoadTasksSuccess = {
 
 type LoadTasksError = {
   type: 'LOAD_TASKS_ERROR',
+}
+
+type SaveTasks = {
+  type: 'SAVE_TASKS',
+}
+
+type SaveTasksRequest = {
+  type: 'SAVE_TASKS_REQUEST',
 }
 
 type SaveTasksSuccess = {
@@ -42,26 +62,25 @@ type HideAlert = {
   payload: number,
 }
 
-type LoadTasks = {
-  type: 'LOAD_TASKS',
-}
 
-type SaveTasks = {
-  type: 'SAVE_TASKS',
-}
+type AlertAction =
+  | ShowAlert
+  | HideAlert;
 
 type Action =
+  | AlertAction
   | AddTask
   | DeleteTask
   | ChangeTask
+  | LoadTasks
+  | LoadTasksRequest
   | LoadTasksSuccess
   | LoadTasksError
+  | SaveTasks
+  | SaveTasksRequest
   | SaveTasksSuccess
-  | SaveTasksError
-  | ShowAlert
-  | HideAlert
-  | LoadTasks
-  | SaveTasks;
+  | SaveTasksError;
+
 
 type Task = {
   id: number,
@@ -81,5 +100,8 @@ type State = {
   savedTasks: Array<Task>,
   isLoading: boolean,
   isSaving: boolean,
+};
+
+type AlertsState = {
   alerts: Array<Alert>,
 };

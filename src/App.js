@@ -55,11 +55,11 @@ const saveDisabled = (props) =>
   props.isLoading || props.isSaving || (props.tasks.reduce((acc, t) => acc + t.id + t.title, "") === props.savedTasks.reduce((acc, t) => acc + t.id + t.title, ""));
 
 const mapStateToProps = (state) => ({
-  tasks: state.tasks,
-  savedTasks: state.savedTasks,
-  isLoading: state.isLoading,
-  isSaving: state.isSaving,
-  alerts: state.alerts
+  tasks: state.tasks.tasks,
+  savedTasks: state.tasks.savedTasks,
+  isLoading: state.tasks.isLoading,
+  isSaving: state.tasks.isSaving,
+  alerts: state.alerts.alerts,
 });
 
 const mapDispatchToProps = (dispatch) => ({

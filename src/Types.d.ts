@@ -1,4 +1,3 @@
-import { Action, State } from './Types';
 import { AlertsAction, AlertsState } from './AlertsReducer.d';
 import { TasksAction, TasksState } from './TasksReducer.d';
 

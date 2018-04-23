@@ -106,18 +106,18 @@ export const saveTasks = (tasks: Array<Task>): ThunkAction => {
       body: JSON.stringify({ tasks: tasks }),
       headers: new Headers({ 'Content-Type': 'application/json' })
     })
-      .then((response) => response.json())
-      .then((json) => {
-        if (json.tasks) {
-          dispatch(saveTasksSuccess());
-          dispatch(showAlert("success", "Tasks saved."))
-        } else {
-          dispatch(saveTasksError());
-          dispatch(showAlert("error", "Can't save tasks."))
-        }
-      }).catch(() => {
+    .then((response) => response.json())
+    .then((json) => {
+      if (json.tasks) {
+        dispatch(saveTasksSuccess());
+        dispatch(showAlert("success", "Tasks saved."))
+      } else {
         dispatch(saveTasksError());
         dispatch(showAlert("error", "Can't save tasks."))
-      });
+      }
+    }).catch(() => {
+      dispatch(saveTasksError());
+      dispatch(showAlert("error", "Can't save tasks."))
+    });
   }
 };

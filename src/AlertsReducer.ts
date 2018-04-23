@@ -1,8 +1,10 @@
-const initialState: AlertsState = {
-    alerts: [],
-  };
+import { AlertsAction, AlertsState, AlertType, ShowAlert, HideAlert } from "./AlertsReducer.d";
 
-export default (state = initialState, action: AlertAction): AlertsState => {
+const initialState: AlertsState = {
+  alerts: [],
+};
+
+export default (state = initialState, action: AlertsAction): AlertsState => {
   switch (action.type) {
     case 'SHOW_ALERT':
       return { ...state, alerts: [...state.alerts, { ...action.payload, id: (new Date()).getTime() }] };
@@ -12,3 +14,13 @@ export default (state = initialState, action: AlertAction): AlertsState => {
       return state;
   }
 }
+
+export const showAlert = (type: AlertType, message: string): ShowAlert => ({
+  type: 'SHOW_ALERT',
+  payload: { type, message }
+});
+
+export const hideAlert = (id: number): HideAlert => ({
+  type: 'HIDE_ALERT',
+  payload: id
+});

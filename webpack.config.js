@@ -12,10 +12,15 @@ module.exports = {
     filename: '[name].js',
   },
 
+  resolve: {
+    // Add `.ts` and `.tsx` as a resolvable extension.
+    extensions: [".ts", ".d.ts", ".tsx", ".js", ".jsx"]
+  },
+
   module: {
     rules: [
       {
-        test: /\.ts|\.tsx$/,
+        test: /\.ts|\.d\.ts|\.tsx$/,
         exclude: /node_modules/,
         loader: 'ts-loader',
       },

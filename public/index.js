@@ -6,7 +6,7 @@ import 'font-awesome/css/font-awesome.css';
 import './index.scss';
 
 import App from '../src/App';
-import reducer from '../src/Reducer.ts';
+import reducer from '../src/Reducer';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';

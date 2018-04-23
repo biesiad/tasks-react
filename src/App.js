@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Task from './components/Task';
 import Alert from './components/Alert';
-import { addTask, deleteTask, changeTask, loadTasks, saveTasks, hideAlert } from './Actions.ts';
+import { addTask, deleteTask, changeTask, loadTasks, saveTasks } from './TasksReducer';
+import { hideAlert } from './AlertsReducer';
 
 
 class App extends Component {

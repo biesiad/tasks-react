@@ -1,6 +1,6 @@
 import { AlertsAction, AlertsState, AlertType, ShowAlert, HideAlert } from "./AlertsReducer.d";
 
-const initialState: AlertsState = {
+export const initialState: AlertsState = {
   alerts: [],
 };
 

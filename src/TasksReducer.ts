@@ -1,8 +1,8 @@
-import { ThunkAction } from './Types.d';
+import { ThunkAction } from './Types';
 import { showAlert, hideAlert } from './AlertsReducer';
 import { Task, TasksState, TasksAction, AddTask, DeleteTask, ChangeTask, LoadTasksRequest, LoadTasksError, LoadTasksSuccess, SaveTasksRequest, SaveTasksSuccess, SaveTasksError } from './TasksReducer.d';
 
-const initialState: TasksState = {
+export const initialState: TasksState = {
   tasks: [],
   savedTasks: [],
   isLoading: false,

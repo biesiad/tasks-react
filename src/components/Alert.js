@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 
-class Alert extends Component {
+class Alert extends React.Component {
   render() {
     return (
       <div className={`alert alert-${this.props.alert.type}`} key={this.props.alert.id}>

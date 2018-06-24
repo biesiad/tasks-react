@@ -3,8 +3,9 @@ module.exports = {
     "\.js|\.ts$": "ts-jest"
   },
   testMatch: [
-    "**/tests/**/*\.test\.ts?(x)",
+    "**/tests/**/*\.test\.(js|ts)?(x)",
   ],
+  setupTestFrameworkScriptFile: './tests/setup.js',
   "moduleFileExtensions": [
     "ts",
     "js"

@@ -1,1 +1,6 @@
-Tasks - React
+# tasks-react
+
+```
+npm install
+npm start
+```
